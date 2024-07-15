@@ -1,14 +1,17 @@
 # NOTE
 
-please use =M-x clean-buffer-list= instead, which is defined in =midnight.el=
+please use `M-x clean-buffer-list` instead, which is defined in `midnight.el`.
 
 # what is clean-buffers
 
-clean-buffers is a little tool that used to clean useless buffers which means buffers match specify regex (see `clean-buffer-useless-buffer-names') or undisplayed time exceeded certain time (see `clean-buffer-useless-buffer-timeout')
+clean-buffers is a little tool that used to clean useless buffers which means
+buffers match specify regex (see `clean-buffer-useless-buffer-names`) or
+undisplayed time exceeded certain time (see `clean-buffer-useless-buffer-timeout`)
 
 ## How to use
 
-config `useless-buffer-names` or `useless-buffer-time-out` and then execute the following commands:
+config `useless-buffer-names` or `useless-buffer-time-out` and then execute the
+following commands:
 
 `clean-buffers-kill-useless-buffers` to clean useless buffers
 
