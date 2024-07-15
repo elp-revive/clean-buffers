@@ -91,9 +91,9 @@ It used in `clean-buffers-judge-useless-buffer-by-time'"
 
 the expire time is determined by `clean-buffers-useless-buffer-time-out'"
   (let (now buffer-last-display-time)
-	(setq now (float-time (current-time)))
-	(setq buffer-last-display-time (float-time (buffer-local-value 'buffer-display-time (get-buffer buffer))))
-	(> (- now buffer-last-display-time) clean-buffers-useless-buffer-time-out)))
+    (setq now (float-time (current-time)))
+    (setq buffer-last-display-time (float-time (buffer-local-value 'buffer-display-time (get-buffer buffer))))
+    (> (- now buffer-last-display-time) clean-buffers-useless-buffer-time-out)))
 
 (defcustom clean-buffers-useless-buffer-names
   '("*Buffer List*" "*Backtrace*" "*Apropos*" "*Completions*" "*Help*" "\\.~master~" "\\*vc-dir\\*" "\\*tramp\/.+\\*"  "\\*vc-git.+\\*")
@@ -114,30 +114,30 @@ the expire time is determined by `clean-buffers-useless-buffer-time-out'"
 (defun clean-buffers--useless-buffer-p (buffer)
   "use functions in `clean-buffers-judge-useless-buffer-functions' to determine the BUFFER is a useless buffer or not"
   (when (bufferp buffer)
-	(setq buffer (buffer-name buffer)))
+    (setq buffer (buffer-name buffer)))
   (and (not (cl-some (lambda (reg) (string-match reg buffer)) clean-buffers-useful-buffer-names))
-	   (cl-some (lambda (fn) (funcall fn buffer)) clean-buffers-judge-useless-buffer-functions)))
+       (cl-some (lambda (fn) (funcall fn buffer)) clean-buffers-judge-useless-buffer-functions)))
 
 (defun clean-buffers--kill-useless-buffer(buffer &optional kill-active kill-process-holding)
   "kill the BUFFER if the BUFFER is a useless buffer"
   (unless (or (not (clean-buffers--useless-buffer-p buffer))
-			  (and (not kill-active) (clean-buffers--buffer-active-p buffer))
-			  (and (not kill-process-holding) (clean-buffers--buffer-process-holding-p buffer)))
-	(message "Cleaning `%s`... done!" buffer)
-	(kill-buffer buffer)))
+              (and (not kill-active) (clean-buffers--buffer-active-p buffer))
+              (and (not kill-process-holding) (clean-buffers--buffer-process-holding-p buffer)))
+    (message "Cleaning `%s`... done!" buffer)
+    (kill-buffer buffer)))
 
 ;;;###autoload
 (defun clean-buffers-kill-useless-buffers()
   "clean all useless buffer"
   (interactive)
   (let ((killed 0))
-	(dolist (buffer (buffer-list))
-	  (when (clean-buffers--kill-useless-buffer buffer
-												clean-buffers-kill-active-buffer
-												clean-buffers-kill-proces-holding-buffer)
-		(cl-incf killed)))
-	(message "[INFO] Total of %s buffer%s cleaned" killed
-			 (if (<= 2 killed) "s" ""))))
+    (dolist (buffer (buffer-list))
+      (when (clean-buffers--kill-useless-buffer buffer
+                                                clean-buffers-kill-active-buffer
+                                                clean-buffers-kill-proces-holding-buffer)
+        (cl-incf killed)))
+    (message "[INFO] Total of %s buffer%s cleaned" killed
+             (if (<= 2 killed) "s" ""))))
 
 (defcustom clean-buffers-auto-clean-interval 10
   "clean useless buffers interval"
@@ -150,7 +150,7 @@ the expire time is determined by `clean-buffers-useless-buffer-time-out'"
 (defun clean-buffers-turn-off-auto-clean-buffers ()
   (interactive)
   (when (timerp clean-buffers-auto-clean-timer)
-	(cancel-timer clean-buffers-auto-clean-timer)))
+    (cancel-timer clean-buffers-auto-clean-timer)))
 
 ;;;###autoload
 (defun clean-buffers-turn-on-auto-clean-buffers ()
