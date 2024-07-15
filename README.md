@@ -8,11 +8,11 @@ clean-buffers is a little tool that used to clean useless buffers which means bu
 
 ## How to use
 
-config `useless-buffer-names' or `useless-buffer-time-out' and then execute the following commands:
+config `useless-buffer-names` or `useless-buffer-time-out` and then execute the following commands:
 
-`clean-buffers-kill-useless-buffers' to clean useless buffers
+`clean-buffers-kill-useless-buffers` to clean useless buffers
 
-or `clean-buffers-turn-on-auto-clean-buffers' to clean useless buffers automatically
+or `clean-buffers-turn-on-auto-clean-buffers` to clean useless buffers automatically
 
 ## Customization
 
